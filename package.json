@@ -2,6 +2,11 @@
   "name": "marbelous",
   "version": "1.0.1",
   "description": "live visualization of Observables",
+  "main": "./src/index.js",
+  "directories": {
+    lib: "./src",
+    example: "./examples",
+  }
   "dependencies": {
     "d3": "^3.5.6",
     "immutable": "^3.7.5",
