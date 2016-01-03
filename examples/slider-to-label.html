@@ -2,32 +2,19 @@
 <meta charset="utf-8">
 <html>
   <head>
-    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="app.css">
-
-    <script src="jquery.js"></script> 
-    <!--<script src="Bacon.js"></script> -->
-    <!--<script src="d3.js"></script> -->
-    <!--<script src="bacon-viz.js"></script> -->
-
+    <link rel="stylesheet" type="text/css" href="../dist/marbelous.css">
+    <link rel="stylesheet" type="text/css" href="slider-to-label.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../dist/marbelous.js"></script> 
   </head>
   <body>
-    <header>
-      <h1>
-        <a href="index.html"> &lt; </a>
-        slider & label
-      </h1>
-    </header>
     <main>
+      <p>slide the slider</p>
       <section class="slider slider-to-label">
         <input type="range" min="0" max="1" step="0.001">
         <span class="label">____</span>
       </section>
-      <article class="stream-visualizations">
-        <!--<h1>stream visualizations</h1>-->
-        <section class="streams">
-        </section>
-      </article>
+      <section id="marbles-container"/>
     </main>
     <script src="slider-to-label.js"></script> 
   </body>

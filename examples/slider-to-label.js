@@ -1,22 +1,27 @@
+const recordObservation = Marbelous.createMarbleDisplay(document.getElementById('marbles-container'));
+
+function visualize(name,observable) {
+  observable.subscribe( e => recordObservation(name,e) );
+}
+
 function observeEventValues($el,eventName){
   return Rx.Observable.fromEvent($el, eventName)
     .map( (e)=> e.target.value );
 }
 
-const Rx = require('rx');
 const $slider = $('.slider input'),
       $label = $('.slider .label');
 
+const values = observeEventValues($slider,'input').startWith($slider.val());
+visualize('slider values',values);
 
-const source = observeEventValues($slider,'input')
-  .map( (v)=> parseFloat(v) )
-  .map( (v)=> Math.round(v*100) )
-  .map( (v)=> `${v}%` )
+const floats = values.map(parseFloat);
+visualize('floats',floats);
 
-//source.subscribe( function(s){
-  //console.log(s);
-//});
+const percents = floats.map( x => Math.round(x*100) );
+visualize('percents',percents);
 
-source.subscribe( function(s){
-  $label.text(s);
-});
+const formatted = percents.map( x => `${x}%` )
+visualize('formatted',formatted);
+
+formatted.subscribe( (x)=> $label.text(x) );
