@@ -21,6 +21,16 @@ const CIRCLE_STYLE = {fill:"#ddd",stroke:"#999", strokeWidth:"2px"},
       HORZ_PADDING = 40,
       TIME_RANGE = 1000*7;
       
+function renderMarbleSvg({transform,opacity,value,circleModifierClass}){
+  const circleClass = `marbelous-marble ${circleModifierClass}`;
+
+  return <g transform={transform} opacity={opacity}>
+    <circle class={circleClass} r={CIRCLE_RADIUS}></circle>
+    <text class="marbelous-marble__text" {...MARBLE_TEXT_PROPS}>
+      {JSON.stringify(value)}
+    </text>
+  </g>;
+}
 
 function renderMarble({observation,timescale}){
   const x = timescale(observation.timestamp);
@@ -34,23 +44,13 @@ function renderMarble({observation,timescale}){
   const opacity = fadescale(observation.timestamp);
   const transform = `translate(${x},0)`;
 
-  return <g transform={transform} opacity={opacity}>
-    <circle class="marbelous-marble" r={CIRCLE_RADIUS}></circle>
-    <text class="marbelous-marble__text" {...MARBLE_TEXT_PROPS}>
-      {observation.value}
-    </text>
-  </g>;
+  return renderMarbleSvg({transform,opacity,value:observation.value});
 }
 
 function renderLatestValueMarble(observation,xOffset){
   const transform = `translate(${xOffset},0)`;
 
-  return <g transform={transform}>
-    <circle class="marbelous-marble -curr-value" r={CIRCLE_RADIUS}></circle>
-    <text class="marbelous-marble__text" {...MARBLE_TEXT_PROPS}>
-      {observation.value}
-    </text>
-  </g>;
+  return renderMarbleSvg({transform,circleModifierClass:"-curr-value",value:observation.value});
 }
 
 function latestValueFrom(observable){
