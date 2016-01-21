@@ -1,9 +1,9 @@
 {
   "name": "marbelous",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "live visualization of Observables",
   "main": "./src/index.js",
-  "files" : [
+  "files": [
     "dist"
   ],
   "directories": {
