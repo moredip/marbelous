@@ -17,6 +17,8 @@ $n: length($colors);
   margin: 0 0 -15px 0;
   color: #444;
   font-size: 14pt;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 100;
 }
 
 .marbelous-stream__line {
@@ -25,7 +27,7 @@ $n: length($colors);
 }
  
 .marbelous-marble {
-  stroke-width: 2px;
+  stroke-width: 3px;
 
   &.-curr-value {
     stroke: #aaa !important;
@@ -36,4 +38,7 @@ $n: length($colors);
 .marbelous-marble__text {
   fill: #222;
   stroke: none;
+  font-size: 12pt;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 400;
 }

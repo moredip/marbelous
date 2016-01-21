@@ -28,7 +28,7 @@ export function createMarbleDisplay(containerElement){
   const initialAppState = Immutable.Map();
   const appStates = observations.scan( observationUpdater, initialAppState );
 
-  const animationFrames = Rx.Observable.interval(50,Rx.Scheduler.requestAnimationFrame);
+  const animationFrames = Rx.Observable.interval(50);
   const stateFrames = animationFrames.withLatestFrom(appStates,(s1,s2)=> s2);
 
 
