@@ -17,7 +17,7 @@
   "dependencies": {
     "d3": "^3.5.6",
     "immutable": "^3.7.5",
-    "rx": "^4.0.6",
+    "rxjs": "^5.0.0-beta.2",
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {

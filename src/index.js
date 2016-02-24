@@ -1,7 +1,9 @@
-import Rx from 'rx/dist/rx.lite';
+import Rx from 'rxjs/Rx';
 import Immutable from 'immutable';
 import createInitialRealizer from './virtualDomRealizer';
 import renderMarbles from './visual';
+
+export { default as Rx } from 'rxjs/Rx';
 
 function observationUpdater(appState,{streamId,observation,timestamp}){
   const newObservable = Immutable.Map({streamName:streamId,observations:Immutable.List()})
@@ -22,14 +24,14 @@ export function createMarbleDisplay(containerElement){
   let observations = new Rx.Subject(); 
 
   function recordObservation(streamId,observation){
-    observations.onNext({streamId,observation,timestamp:Date.now()});
+    observations.next({streamId,observation,timestamp:Date.now()});
   }
 
   const initialAppState = Immutable.Map();
   const appStates = observations.scan( observationUpdater, initialAppState );
 
   const animationFrames = Rx.Observable.interval(50);
-  const stateFrames = animationFrames.withLatestFrom(appStates,(s1,s2)=> s2);
+  const stateFrames = animationFrames.withLatestFrom(appStates,(_,appState)=> appState);
 
 
   const initialRealizer = createInitialRealizer(containerElement);

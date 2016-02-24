@@ -1,11 +1,11 @@
 const recordObservation = Marbelous.createMarbleDisplay(document.getElementById('marbles-container'));
 
 function visualize(name,observable) {
-  observable.subscribe( e => recordObservation(name,e) );
+  observable.inspectTime(60).subscribe( e => recordObservation(name,e) );
 }
 
 function observeEventValues($el,eventName){
-  return Rx.Observable.fromEvent($el, eventName)
+  return Marbelous.Rx.Observable.fromEvent($el, eventName)
     .map( (e)=> e.target.value );
 }
 
